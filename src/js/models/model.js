@@ -1,5 +1,6 @@
 class BasicModel {
-  constructor() {}
+  constructor() { }
 }
 
 export default BasicModel;
+
