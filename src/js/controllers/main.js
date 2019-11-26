@@ -2,7 +2,8 @@ import BaseView from "../views/view";
 import CreateMainPlayer from "./createPlayer";
 
 
-class MainCtrl extends CreateMainPlayer {
+
+class MainCtrl extends CreateMainPlayer  {
   constructor() {
     super();
     this.view = new BaseView();
