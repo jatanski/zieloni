@@ -1,6 +1,15 @@
 import BaseView from "../views/view";
+import Words from "../models/words"
 import CreateMainPlayer from "./createPlayer";
-var view = new BaseView();
+import Game from "./game";
+import SpeechRecognition from "./speechRecognition";
+import speechRecognition from "./speechRecognition";
+
+const view = new BaseView();
+let game;
+let mainPlayer;
+let enemyPlayer;
+
 
 class MainCtrl extends CreateMainPlayer {
   constructor() {
@@ -12,16 +21,32 @@ class MainCtrl extends CreateMainPlayer {
   init() {
     if (!localStorage.mainPlayer) {
       //jeśli nie mamy stworzonego gracza głównego to odpalamy funkcjonalność zapisaną w createPlayer
-      // this.createTemplateHTML()
-      //console.log(BaseView.prototype) //BaseView.welcomeHTML();
       view.Welcome_View();
-      this.createPlayer();
+      this.createAvatarChoices(view.pushIMGs);
       this.chooseAvatarlistener();
-      this.createAvatarChoices();
+      this.createPlayer(this, mainPlayer, enemyPlayer);
+    }
+    else if (localStorage.mainPlayer && !localStorage.enemyPlayer) {
+      view.welcomEnemyHTML();
+      this.createAvatarChoices(view.pushIMGs);
+      this.chooseAvatarlistener();
+      this.createPlayer(this, mainPlayer, enemyPlayer, true);
     }
     else {
-      // w przeciwnym razie uruchamiamy grę
-      console.log('uruchom gre')
+      view.Game_View();
+      game = new Game();
+      let player_obj = JSON.parse(localStorage.mainPlayer);
+      let enemy_obj = JSON.parse(localStorage.enemyPlayer);
+      mainPlayer ? mainPlayer = mainPlayer : mainPlayer = player_obj;
+      enemyPlayer ? enemyPlayer = enemyPlayer : enemyPlayer = enemy_obj;
+      // game.setRound(() => { console.log('hehe') }, 3000);
+      // Words.return_translation('en-pl').then((r) => { console.log(r) });
+      Words.return_translation('en-pl').then((r) => { view.pushWord(r[0]) });
+
+      // Words.randomWord().then((r) => { console.log(r) });
+
+      game.setPoints(mainPlayer, enemyPlayer, 10, 20);
+      game.addListenersMic(speechRecognition.captureSpeech);
     }
 
   }

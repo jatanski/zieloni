@@ -64,3 +64,15 @@ h2{
   font-size: 24px;
   cursor: pointer;
 }
+
+.mic{
+  margin-top: 40px;
+  width:40px;
+  cursor: pointer;
+}
+.mic_r{
+  position: relative;
+  left: calc(100% - 40px);
+  top:-80px;
+
+}

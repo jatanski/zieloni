@@ -1,11 +1,14 @@
 import AvatarsAPI from "../models/avatarsAPI";
-import { MainPlayer } from "../models/player"
+import { MainPlayer, Player } from "../models/player";
+import BaseView from "../views/view";
 
 
 class CreateMainPlayer {
 
-    createPlayer() {
+
+    createPlayer(that, mainPlayer, enemyPlayer, isEnemy = false) {
         const startBTN = document.getElementsByClassName('start')[0];
+        // console.log(that.init);
 
         startBTN.addEventListener('click', () => {
             const name = document.getElementsByClassName('name_main_avatar')[0].innerText;
@@ -16,17 +19,23 @@ class CreateMainPlayer {
             })
 
             if (avatar.length === 1 && name !== 'NAME') {
-                let mainPlayer = new MainPlayer(name, 0, avatar[0].src, 0, [], [], []);
-                var savePlayer = JSON.stringify(mainPlayer);
-                localStorage.mainPlayer = savePlayer;
-                alert('Wszystko poszło okay');
+                if (!isEnemy) {
+                    mainPlayer = new MainPlayer(name, 0, avatar[0].src, 0, [], [], []);
+                    let savePlayer = JSON.stringify(mainPlayer);
+                    localStorage.mainPlayer = savePlayer;
+                } else if (isEnemy) {
+                    enemyPlayer = new Player(name, 0, avatar[0].src);
+                    let savePlayer = JSON.stringify(enemyPlayer);
+                    localStorage.enemyPlayer = savePlayer;
+                    that.init();
+                }
+                that.init();
             } else {
                 alert('nie powiodło się uzupełnij dane');
             }
-
         })
-
     }
+
     chooseAvatarlistener() {
         var parenContainer = document.getElementsByClassName("avatarContainer")[0];
         function choose(e) {
@@ -43,15 +52,10 @@ class CreateMainPlayer {
             e.stopPropagation();
         }
         parenContainer.addEventListener('click', choose, false);
-
     }
-    createAvatarChoices() {
-        // AvatarsAPI.imagesArrayRequest()().then((resp) => { console.log(resp) });
-        var divForMainAvatar = document.getElementsByClassName('avatarContainer')[0];
-        AvatarsAPI.imagesArrayRequest()().then((resp) => {
-            resp.map((avatar) => { return `<img alt='avatar' src=${avatar}></img>` })
-                .forEach((img) => { divForMainAvatar.innerHTML += img })
-        });
+
+    createAvatarChoices(callback_img_pusher) {
+        AvatarsAPI.imagesArrayRequest()().then((imgs) => { callback_img_pusher(imgs) })
     }
 
 }
