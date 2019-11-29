@@ -4,9 +4,10 @@
 
 
 class Game {
-    constructor() {
+    constructor(tabWords) {
         this.timerForClick;
         this.timerForResponse;
+        this.tabWords = tabWords;
     }
     setRound(setTime_callback, time) {
         this.timerForClick = setTimeout(setTime_callback, time)
@@ -24,12 +25,11 @@ class Game {
         localStorage.mainPlayer = JSON.stringify(player);
         localStorage.enemyPlayer = JSON.stringify(enemy);
     }
-    addListenersMic(speechRec) {
+    addListenersMic(speechRec, tabWords) {
         const microfons = document.getElementsByClassName('mic');
         [...microfons].forEach((mic) => {
             //mic.dataset.player
-            speechRec();
-            mic.addEventListener('click', () => { this.setTimerForResponse(() => { speechRec(true); alert('koniec czasu na odp') }, 3000) })
+            mic.addEventListener('click', (e) => { speechRec(true, tabWords, e.target) })
         })
     }
     checkAnswere() { }

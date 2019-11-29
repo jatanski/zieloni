@@ -3,8 +3,8 @@ class Game_View {
         document.body.innerHTML =
             `<div class="container">
                 <p class="word-holder">Hello this is game ...</p>
-                <img src="http://api.nuestro.eu/mic.svg" alt="microphone_icon" class="mic mic_l" data-player="mainPlayer"></img>
-                <img src="http://api.nuestro.eu/mic.svg" alt="microphone_icon" class="mic mic_r" data-player="enemyPlayer"></img>
+                <div class="mic_l"><img class="mic" src="http://api.nuestro.eu/mic.svg" alt="microphone_icon"  data-player="mainPlayer"></img><p></p></div>
+                <div class="mic_r"><img class="mic" src="http://api.nuestro.eu/mic.svg" alt="microphone_icon"  data-player="enemyPlayer"></img><p></p></div>
             </img>`
     }
     static pushWord(word) {

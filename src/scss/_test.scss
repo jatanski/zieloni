@@ -71,8 +71,16 @@ h2{
   cursor: pointer;
 }
 .mic_r{
+  display: inline-block;
   position: relative;
   left: calc(100% - 40px);
   top:-80px;
-
+  width: 40px;
+}
+.mic_l{
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  // left: calc(100% - 40px);
+  // top:-80px;
 }

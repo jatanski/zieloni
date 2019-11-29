@@ -20,12 +20,13 @@ class Words {
     static randomWord() {
         //z tego co zauważyłem to trzeba odświeżać klucze, więc jak coś nie działa to najlepiej wygenerować nowy.
         //https://random-word-api.herokuapp.com/
-        const key = 'DQB4Z7RV';
+        const key = 'XZNW1U9F';
         return fetch(`https://random-word-api.herokuapp.com//word?key=${key}&number=1`, {
             "method": "GET"
         }).then((resp) => {
             return resp.json()
         }).then((resp) => {
+            if (resp === 'wrong API key') { this.randomWord; return; }
             return resp[0]
         })
     }

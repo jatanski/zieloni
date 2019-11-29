@@ -34,7 +34,7 @@ class MainCtrl extends CreateMainPlayer {
     }
     else {
       view.Game_View();
-      game = new Game();
+      game = new Game([]);
       let player_obj = JSON.parse(localStorage.mainPlayer);
       let enemy_obj = JSON.parse(localStorage.enemyPlayer);
       mainPlayer ? mainPlayer = mainPlayer : mainPlayer = player_obj;
@@ -46,7 +46,7 @@ class MainCtrl extends CreateMainPlayer {
       // Words.randomWord().then((r) => { console.log(r) });
 
       game.setPoints(mainPlayer, enemyPlayer, 10, 20);
-      game.addListenersMic(speechRecognition.captureSpeech);
+      game.addListenersMic(speechRecognition.captureSpeech, game.tabWords);
     }
 
   }
