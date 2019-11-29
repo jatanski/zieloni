@@ -24,7 +24,8 @@ class speechRecognition {
                 console.log(wordsTab)
             })
             recognition.start();
-            console.log('zacznij mówić');
+            setTimeout(() => { mic_icon.parentNode.children[1].innerHTML = 'zacznij mówić' }, 750)
+
         })
 
 
