@@ -33,20 +33,22 @@ class MainCtrl extends CreateMainPlayer {
       this.createPlayer(this, mainPlayer, enemyPlayer, true);
     }
     else {
+      // Words.return_translation('en-pl').then((r) => { console.log(r) });
       view.Game_View();
       game = new Game([]);
       let player_obj = JSON.parse(localStorage.mainPlayer);
       let enemy_obj = JSON.parse(localStorage.enemyPlayer);
       mainPlayer ? mainPlayer = mainPlayer : mainPlayer = player_obj;
       enemyPlayer ? enemyPlayer = enemyPlayer : enemyPlayer = enemy_obj;
-      // game.setRound(() => { console.log('hehe') }, 3000);
-      // Words.return_translation('en-pl').then((r) => { console.log(r) });
-      Words.return_translation('en-pl').then((r) => { view.pushWord(r[0]) });
+      let setNewRoundSchema = function (firstRound = false) {
+        if (!firstRound) { game.setPoints(mainPlayer, enemyPlayer, -10, -10); }
+        Words.return_translation('en-pl').then((r) => { view.pushWord(r[0]); game.currentTranslationWords = r });
+        game.fillNames();
+        game.setRound(() => { setNewRoundSchema() }, 5000);
+      }
+      setNewRoundSchema(true);
+      game.addListenersMic(speechRecognition.captureSpeech, game.tabWords, game.checkAnswere, game, setNewRoundSchema);
 
-      // Words.randomWord().then((r) => { console.log(r) });
-
-      game.setPoints(mainPlayer, enemyPlayer, 10, 20);
-      game.addListenersMic(speechRecognition.captureSpeech, game.tabWords);
     }
 
   }

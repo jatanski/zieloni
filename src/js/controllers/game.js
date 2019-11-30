@@ -1,3 +1,5 @@
+import { create } from "domain";
+
 // import AvatarsAPI from "../models/avatarsAPI";
 // import { MainPlayer, Player } from "../models/player";
 // import BaseView from "../views/view";
@@ -8,6 +10,7 @@ class Game {
         this.timerForClick;
         this.timerForResponse;
         this.tabWords = tabWords;
+        this.currentTranslationWords;
     }
     setRound(setTime_callback, time) {
         this.timerForClick = setTimeout(setTime_callback, time)
@@ -25,14 +28,32 @@ class Game {
         localStorage.mainPlayer = JSON.stringify(player);
         localStorage.enemyPlayer = JSON.stringify(enemy);
     }
-    addListenersMic(speechRec, tabWords) {
+    fillNames() {
+        var player_obj = JSON.parse(localStorage.mainPlayer);
+        var enemy_obj = JSON.parse(localStorage.enemyPlayer);
+        let namesTab = document.getElementsByClassName('name');
+        namesTab[0].innerHTML = player_obj['_name'] + `: <span class="points">${player_obj['points']} points</span>`;
+        namesTab[1].innerHTML = enemy_obj['_name'] + `: <span class="points">${enemy_obj['points']} points</span>`;
+    }
+    addListenersMic(speechRec, validator, translation_tab, setNewRoundSchema) {
         const microfons = document.getElementsByClassName('mic');
         [...microfons].forEach((mic) => {
             //mic.dataset.player
-            mic.addEventListener('click', (e) => { speechRec(true, tabWords, e.target) })
+            //clearInterval
+            mic.addEventListener('click', (e) => { clearTimeout(this.timerForClick); speechRec(validator, translation_tab, e.target, setNewRoundSchema) })
         })
     }
-    checkAnswere() { }
+    checkAnswere(response, translation_tab, who) {
+        // console.log(response, translation_tab);
+        if (response[0].toLowerCase() === translation_tab[1].toLowerCase()) {
+            console.log('poprawna odpowiedź');
+            return true;
+        } else {
+            console.log('niepoprawna odpowiedź');
+            return false;
+        }
+
+    }
     blockMic() { }
 
 }
