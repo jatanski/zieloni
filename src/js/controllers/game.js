@@ -36,7 +36,7 @@ class Game {
         namesTab[0].innerHTML = player_obj['_name'] + `: <span class="points">${player_obj['points']} points</span>`;
         namesTab[1].innerHTML = enemy_obj['_name'] + `: <span class="points">${enemy_obj['points']} points</span>`;
     }
-    addListenersMic(speechRec, validator, translation_tab, setNewRoundSchema) {
+    addListenersMic(speechRec, tabWords, validator, translation_tab, setNewRoundSchema) {
         const microfons = document.getElementsByClassName('mic');
         [...microfons].forEach((mic) => {
             //mic.dataset.player
