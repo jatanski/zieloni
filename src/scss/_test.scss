@@ -16,6 +16,10 @@
   color: gray;
   font-family: 'Slabo 27px', serif;
 }
+.game{
+  display: block;
+  position: relative;
+}
 
 h2{
   margin: 10px 0;
@@ -63,4 +67,25 @@ h2{
   border: none;
   font-size: 24px;
   cursor: pointer;
+}
+
+.mic{
+  margin-top: 40px;
+  width:40px;
+  cursor: pointer;
+}
+.mic_r{
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 80px;
+  // width: 40px;
+}
+.mic_l{
+  display: inline-block;
+  position: absolute;
+  left:0;
+  top: 80px;
+  // left: calc(100% - 40px);
+  // top:-80px;
 }

@@ -6,8 +6,10 @@ import createGameTemplate from "./controllers/game"
 import speechRecognition from "./controllers/speechRecognition"
 
 new MainCtrl().init();
-new speechRecognition().captureSpeech();
-new createGameTemplate().createTemplateHTML()
+
+// new speechRecognition().captureSpeech()
+
+
 
 // Testy
 
