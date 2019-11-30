@@ -1,3 +1,4 @@
+
 import { create } from "domain";
 
 // import AvatarsAPI from "../models/avatarsAPI";
@@ -59,3 +60,5 @@ class Game {
 }
 
 export default Game;
+
+
