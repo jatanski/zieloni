@@ -27,7 +27,7 @@ class CreateMainPlayer {
                     enemyPlayer = new Player(name, 0, avatar[0].src);
                     let savePlayer = JSON.stringify(enemyPlayer);
                     localStorage.enemyPlayer = savePlayer;
-                    that.init();
+                    //that.init();
                 }
                 that.init();
             } else {
