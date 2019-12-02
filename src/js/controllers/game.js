@@ -44,7 +44,17 @@ class Game {
         [...microfons].forEach((mic) => {
             //mic.dataset.player
             //clearInterval
-            mic.addEventListener('click', (e) => { clearTimeout(this.timerForClick); speechRec/*funkcja do rozpoznawania mowy odpala się*/(validator, translation_tab, e.target/*pobiera nam mikrofon*/, setNewRoundSchema/*i funkcję do rozpoczęcia nowego schematu(nowej tury)*/) })//na kliknięcie kieruje nam czas na odpowiedź, że czas na kliknięcie nam się nie ten,
+            function addClass() {mic.classList += ' active';}
+             let action =(e) => {
+                let microphone = document.getElementsByClassName('active')
+                if (microphone.length > 0 ){
+                    return
+                }
+                else {
+                    clearTimeout(this.timerForClick); speechRec(validator, translation_tab, e.target, setNewRoundSchema); addClass()
+                }
+            }
+            mic.addEventListener('click', (e) => { action(e) })
         })
     }
     checkAnswere(response, translation_tab, who) {//walidator
