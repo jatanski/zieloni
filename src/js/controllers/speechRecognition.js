@@ -1,7 +1,7 @@
 class speechRecognition {
 
     static captureSpeech(validator, game, mic_icon, setNewRoundSchema) {
-
+        // dodać dodawanie flagi
 
         return new Promise((resolve, reject) => {
             const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition);
@@ -15,14 +15,16 @@ class speechRecognition {
                 game.tabWords.length = 0;
                 game.tabWords.push(transcript);
                 mic_icon.parentNode.children[2].innerHTML = transcript;
+                // informuje w którym miejscu się wyświetla to co się powiedziało
                 // console.log(mic_icon);
 
                 //i funkcja odpowiedzialna za wrzucanie tego do htmla;
             });
             recognition.addEventListener('end', () => {
                 let validationResult = validator(game.tabWords, game.currentTranslationWords);
+                mic_icon.classList.remove('active')
                 //przydzielenie wyników w zależności od wyniku można to w sumie spiąć z setNewRoundSchema !!!
-                setNewRoundSchema();
+                setNewRoundSchema(true);
             })
             recognition.start();
             setTimeout(() => { mic_icon.parentNode.children[2].innerHTML = 'zacznij mówić' }, 750)

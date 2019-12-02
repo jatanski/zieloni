@@ -24,6 +24,7 @@ class Game {
         enemy.points += enemy_points;
         var player_obj = JSON.parse(localStorage.mainPlayer);
         var enemy_obj = JSON.parse(localStorage.enemyPlayer);
+        console.log(player.points, enemy.points)
         player_obj.points = player.points;
         enemy_obj.points = enemy.points;
         localStorage.mainPlayer = JSON.stringify(player);
@@ -41,9 +42,20 @@ class Game {
         [...microfons].forEach((mic) => {
             //mic.dataset.player
             //clearInterval
-            mic.addEventListener('click', (e) => { clearTimeout(this.timerForClick); speechRec(validator, translation_tab, e.target, setNewRoundSchema) })
+            function addClass() {mic.classList += ' active';}
+             let action =(e) => {
+                let microphone = document.getElementsByClassName('active')
+                if (microphone.length > 0 ){
+                    return
+                }
+                else {
+                    clearTimeout(this.timerForClick); speechRec(validator, translation_tab, e.target, setNewRoundSchema); addClass()
+                }
+            }
+            mic.addEventListener('click', (e) => { action(e) })
         })
     }
+
     checkAnswere(response, translation_tab, who) {
         // console.log(response, translation_tab);
         if (response[0].toLowerCase() === translation_tab[1].toLowerCase()) {

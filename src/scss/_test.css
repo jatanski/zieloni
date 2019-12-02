@@ -1,12 +1,14 @@
 .test {
   color: red;
 }
-*{
-  margin:0;
-  padding:0;
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-.container{
+
+.container {
   padding: 24px 0;
   margin: 0 auto;
   max-width: 640px;
@@ -16,46 +18,49 @@
   color: gray;
   font-family: 'Slabo 27px', serif;
 }
-.game{
+
+.game {
   display: block;
   position: relative;
 }
 
-h2{
+h2 {
   margin: 10px 0;
 }
-.mainAvatar{
+
+.mainAvatar {
   overflow: scroll;
-  max-height:calc(90vh - 300px);
+  max-height: calc(90vh - 300px);
   position: relative;
   max-width: 90%;
   min-height: 100px;
   margin: 8px auto;
   margin-top: 30px;
   border-radius: 18px;
-  border:  2px solid lightgreen;
+  border: 2px solid lightgreen;
   transition: .3s linear;
 }
 
-.mainAvatar img.avatar{
+.mainAvatar img.avatar {
   width: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   display: none;
 }
 
 .avatarContainer {
   width: 100%;
 }
-.avatarContainer img{
+
+.avatarContainer img {
   max-height: 90px;
   margin: 20px;
   cursor: pointer;
 }
 
-.start{
+.start {
   margin: 0 auto;
   margin-top: 30px;
   background: lightgreen;
@@ -69,25 +74,24 @@ h2{
   cursor: pointer;
 }
 
-.mic{
+.mic {
   margin-top: 40px;
-  width:40px;
+  width: 40px;
   cursor: pointer;
 }
-.mic_r{
+
+.mic_r {
   display: inline-block;
   position: absolute;
   right: 0;
   top: 80px;
-  // width: 40px;
 }
-.mic_l{
+
+.mic_l {
   display: inline-block;
   position: absolute;
-  left:0;
+  left: 0;
   top: 80px;
-  // left: calc(100% - 40px);
-  // top:-80px;
 }
 
 .activeMicrophone {

@@ -40,7 +40,7 @@ class MainCtrl extends CreateMainPlayer {
       let enemy_obj = JSON.parse(localStorage.enemyPlayer);
       mainPlayer ? mainPlayer = mainPlayer : mainPlayer = player_obj;
       enemyPlayer ? enemyPlayer = enemyPlayer : enemyPlayer = enemy_obj;
-      let setNewRoundSchema = function (firstRound = false) {
+      let setNewRoundSchema = function (firstRound = false) { 
         if (!firstRound) { game.setPoints(mainPlayer, enemyPlayer, -10, -10); }
         Words.return_translation('en-pl').then((r) => { view.pushWord(r[0]); game.currentTranslationWords = r });
         game.fillNames();
