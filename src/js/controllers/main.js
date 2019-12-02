@@ -5,11 +5,10 @@ import Game from "./game";
 import SpeechRecognition from "./speechRecognition";
 import speechRecognition from "./speechRecognition";
 
-const view = new BaseView();
-let game;
+const view = new BaseView();//generowanie widoku
+let game;//obiekt do którego będziemy wrzucać
 let mainPlayer;
 let enemyPlayer;
-
 
 class MainCtrl extends CreateMainPlayer {
   constructor() {
@@ -35,19 +34,19 @@ class MainCtrl extends CreateMainPlayer {
     else {
       // Words.return_translation('en-pl').then((r) => { console.log(r) });
       view.Game_View();
-      game = new Game([]);
-      let player_obj = JSON.parse(localStorage.mainPlayer);
+      let player_obj = JSON.parse(localStorage.mainPlayer);//zamiana ze stringa na obiekt(obiekt player)
       let enemy_obj = JSON.parse(localStorage.enemyPlayer);
       mainPlayer ? mainPlayer = mainPlayer : mainPlayer = player_obj;
       enemyPlayer ? enemyPlayer = enemyPlayer : enemyPlayer = enemy_obj;
+      let game = new Game([],mainPlayer,enemyPlayer); // tu wrzucamy coś , jak będziemy coś mówić
       let setNewRoundSchema = function (firstRound = false) {
-        if (!firstRound) { game.setPoints(mainPlayer, enemyPlayer, -10, -10); }
-        Words.return_translation('en-pl').then((r) => { view.pushWord(r[0]); game.currentTranslationWords = r });
+        if (!firstRound) { game.setPoints(mainPlayer, enemyPlayer, -10, -10); }//sprawdza czy to jest pierwsza tura
+        Words.return_translation('en-pl').then((r) => { view.pushWord(r[0]); game.currentTranslationWords = r });//losowanie słówka
         game.fillNames();
         game.setRound(() => { setNewRoundSchema() }, 5000);
       }
-      setNewRoundSchema(true);
-      game.addListenersMic(speechRecognition.captureSpeech, game.tabWords, game.checkAnswere, game, setNewRoundSchema);
+      setNewRoundSchema(true);//wywołanie schematu - 1 runda
+      game.addListenersMic(speechRecognition.captureSpeech, game.tabWords,/*słówka, któe losuje nam parę*/ game.checkAnswere, game/*przechowuje słowka, które powiemy w linii 38*/, setNewRoundSchema/*wznowienie nasłuchu do kolejnej gry*/);//nasłuchuje na klikanie, na mikrofon
 
     }
 

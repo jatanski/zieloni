@@ -7,11 +7,13 @@ import { create } from "domain";
 
 
 class Game {
-    constructor(tabWords) {
+    constructor(tabWords,mainPlayer,enemyPlayer) {
         this.timerForClick;
         this.timerForResponse;
         this.tabWords = tabWords;
         this.currentTranslationWords;
+        this.mainPlayer = mainPlayer;
+        this.enemyPlayer = enemyPlayer;
     }
     setRound(setTime_callback, time) {
         this.timerForClick = setTimeout(setTime_callback, time)
@@ -26,8 +28,9 @@ class Game {
         var enemy_obj = JSON.parse(localStorage.enemyPlayer);
         player_obj.points = player.points;
         enemy_obj.points = enemy.points;
-        localStorage.mainPlayer = JSON.stringify(player);
+        localStorage.mainPlayer = JSON.stringify(player);//z obiektu robi stringa
         localStorage.enemyPlayer = JSON.stringify(enemy);
+        console.log(player_points, enemy_points)
     }
     fillNames() {
         var player_obj = JSON.parse(localStorage.mainPlayer);
@@ -41,10 +44,10 @@ class Game {
         [...microfons].forEach((mic) => {
             //mic.dataset.player
             //clearInterval
-            mic.addEventListener('click', (e) => { clearTimeout(this.timerForClick); speechRec(validator, translation_tab, e.target, setNewRoundSchema) })
+            mic.addEventListener('click', (e) => { clearTimeout(this.timerForClick); speechRec/*funkcja do rozpoznawania mowy odpala się*/(validator, translation_tab, e.target/*pobiera nam mikrofon*/, setNewRoundSchema/*i funkcję do rozpoczęcia nowego schematu(nowej tury)*/) })//na kliknięcie kieruje nam czas na odpowiedź, że czas na kliknięcie nam się nie ten,
         })
     }
-    checkAnswere(response, translation_tab, who) {
+    checkAnswere(response, translation_tab, who) {//walidator
         // console.log(response, translation_tab);
         if (response[0].toLowerCase() === translation_tab[1].toLowerCase()) {
             console.log('poprawna odpowiedź');
