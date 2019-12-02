@@ -20,7 +20,9 @@ class speechRecognition {
                 //i funkcja odpowiedzialna za wrzucanie tego do htmla;
             });
             recognition.addEventListener('end', () => {
-                let validationResult = validator(game.tabWords, game.currentTranslationWords);// tu jest przypisany wynik czy dobrze czy źle player odpowiedział; ta zmienna jest mi potrzebna do prawidłowego przyznawania/odejmowania punktów
+                let validationResult = validator(game.tabWords, game.currentTranslationWords);
+                mic_icon.classList.remove('active');
+                // tu jest przypisany wynik czy dobrze czy źle player odpowiedział; ta zmienna jest mi potrzebna do prawidłowego przyznawania/odejmowania punktów
                 //na podstawie tego, kto odpowiadał, jaki jet wynik, przypisać punkty dodatnie lub ujemne
 /*TO ZROBIĆ MAM-WYŚWIETLA CZY DOBRZE CZY ŹLE, ALE NIE DODAJE PUNKTÓW I NIE ODEJMUJE - ZROBIĆ TO DODAWANIE I ODEJMOWANIE PUNKTÓW PRZECIWNIKOM*/  //przydzielenie wyników w zależności
 //od wyniku można to w sumie spiąć z setNewRoundSchema !!!
@@ -38,7 +40,7 @@ else {
 //console.log(game);
                 setNewRoundSchema(true);
             })
-            recognition.sta-rt();
+            recognition.start();
             setTimeout(() => { mic_icon.parentNode.children[2].innerHTML = 'zacznij mówić' }, 750)
 
         })
