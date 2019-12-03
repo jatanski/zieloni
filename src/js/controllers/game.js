@@ -36,8 +36,8 @@ class Game {
         var player_obj = JSON.parse(localStorage.mainPlayer);
         var enemy_obj = JSON.parse(localStorage.enemyPlayer);
         let namesTab = document.getElementsByClassName('name');
-        namesTab[0].innerHTML = player_obj['_name'] + `: <span class="points">${player_obj['points']} points</span>`;
-        namesTab[1].innerHTML = enemy_obj['_name'] + `: <span class="points">${enemy_obj['points']} points</span>`;
+        namesTab[0].innerHTML = player_obj['_name'] + `: <br><i class="fas fa-star"></i><span class="points">${player_obj['points']} points</span>`;
+        namesTab[1].innerHTML = enemy_obj['_name'] + `: <br><i class="fas fa-star"></i><span class="points">${enemy_obj['points']} points</span>`;
     }
     addListenersMic(speechRec, tabWords, validator, translation_tab, setNewRoundSchema) {
         const microfons = document.getElementsByClassName('mic');

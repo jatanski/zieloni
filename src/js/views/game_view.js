@@ -1,6 +1,8 @@
 class Game_View {
     static gameHTML() {
-        
+        // constructor(avatar){
+        //     this.avatar =
+        // }
         document.body.innerHTML =
             // `<div class="container game">
             //     <p class="word-holder">Hello this is game ...</p>
@@ -9,12 +11,20 @@ class Game_View {
             // </img>
             // `
             `<div class="container game">
-            <div></div>
-            <p class="word-holder">Hello this is game ...</p>
-            <div class="players_panel"><div class="panel_l"><p class="name">name:<span class="points">88 Points</span></p><div class="mic_button"><i class="fas fa-microphone mic" data-player="mainPlayer"></i></div><p></p></div>
-            <div class="panel_r"><p class="name">name:<span class="points">88 Points</span></p><div class="mic_button"><i class="fas fa-microphone mic" data-player="enemyPlayer"></i></div><p></p></div></div> 
-            
-        </img>
+                <div> <img src="./assets/people.jpg" class="img"></div>
+                <p class="word-holder">Hello this is game ...</p>
+                <div class="players_panel">
+                    <div class="panel_l">
+                        <p class="name">name: <span class="points">88 Points</span></p>
+                        <div class="mic_button"><i class="fas fa-microphone mic" data-player="mainPlayer"></i></div>
+                        <p></p>
+                </div>
+                <div class="panel_r">
+                    <p class="name">name:<span class="points">88 Points</span></p>
+                    <div class="mic_button"><i class="fas fa-microphone mic" data-player="enemyPlayer"></i></div> 
+                    <p></p>
+                </div>
+            </div> 
         `
         console.log()
     }
