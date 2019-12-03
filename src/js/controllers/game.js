@@ -59,6 +59,7 @@ class Game {
     }
     checkAnswere(response, translation_tab, who) {//walidator
         // console.log(response, translation_tab);
+        if(!response[0]){return false}
         if (response[0].toLowerCase() === translation_tab[1].toLowerCase()) {
             console.log('poprawna odpowiedź');
             return true;
