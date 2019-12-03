@@ -69,23 +69,3 @@ h2{
   cursor: pointer;
 }
 
-.mic{
-  margin-top: 40px;
-  width:40px;
-  cursor: pointer;
-}
-.mic_r{
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 80px;
-  // width: 40px;
-}
-.mic_l{
-  display: inline-block;
-  position: absolute;
-  left:0;
-  top: 80px;
-  // left: calc(100% - 40px);
-  // top:-80px;
-}
