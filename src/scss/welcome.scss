@@ -1,0 +1,67 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0089BF;
+}
+.container{
+  padding: 24px 0;
+  margin: 0 auto;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  color: gray;
+  font-family: 'Slabo 27px', serif;
+  height: 90vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  background-color: white;
+  border-radius: 30px;
+  padding: 20px;
+}
+
+.welcome{
+  margin: 10px 0;
+  .app_name {
+    color: #FCC14B;
+  }
+}
+.instructions {
+  font-size: 18px;
+}
+
+.start{
+  margin: 0 auto;
+  background: #06D08D;
+  color: white;
+  min-width: 200px;
+  height: 40px;
+  width: 90px;
+  border-radius: 18px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  &:hover > .fa-arrow-right {
+    animation:flow 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    position: relative;
+    
+  }
+  @keyframes flow {
+    0% {right:0; opacity: 100%}
+    25% {right:-5; opacity: 75%}
+    50% {right:-10px; opacity: 50%}
+    75% {right:-15; opacity: 25%}
+    100% {right:-20px; opacity: 0%}
+  }
+  .fa-arrow-right {
+    margin-left: 10px;
+  }
+}
+

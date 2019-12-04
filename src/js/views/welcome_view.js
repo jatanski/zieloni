@@ -2,20 +2,20 @@ class Welcome_View {
     static welcomeHTML() {
         document.body.innerHTML =
             `<div class="container">
-                 <h2>Witaj!</h2>
-                 <p>Aby zagrać wybierz avatar dla swojej postaci oraz nadaj jej imię.</p>
+                 <h2 class="welcome">Witaj w <span class="app_name">LinguaChallenge!<span></h2>
+                 <p class="instructions">Aby rozpocząć wyzwanie wybierz avatar dla swojej postaci oraz nadaj jej imię.</p>
                 <div class="mainAvatar">
                     <div class="avatarContainer"></div>
                 </div>
                 <h2 contenteditable=true class="name_main_avatar">NAME</h2>
-                <button class="start">Zaczynamy!</button>
+                <button class="start">Kolejny gracz<i class="fas fa-arrow-right"></i></button>
             </div>`
     }
     static welcomEnemyHTML() {
         document.body.innerHTML =
             `<div class="container">
                 <h2>Tylko jeden krok dzieli Cię od trybu multiplayer</h2>
-                <p>Aby zagrać poproś twojego rywala o stworzenie jego tymczasowej postaci</p>
+                <p class="instructions">Aby zagrać poproś twojego rywala o stworzenie jego tymczasowej postaci</p>
                 <div class="mainAvatar">
                     <div class="avatarContainer"></div>
                 </div>

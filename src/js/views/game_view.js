@@ -1,3 +1,4 @@
+import Img from '../../assets/people.jpg'
 class Game_View {
     static gameHTML() {
         // constructor(avatar){
@@ -11,7 +12,7 @@ class Game_View {
             // </img>
             // `
             `<div class="container game">
-                <div> <img src="./assets/people.jpg" class="img"></div>
+                <div> <img src=${Img} class="img"></div>
                 <p class="word-holder">Hello this is game ...</p>
                 <div class="players_panel">
                     <div class="panel_l">
