@@ -15,7 +15,6 @@ class speechRecognition {
                 game.tabWords.length = 0;
                 game.tabWords.push(transcript);
                 mic_icon.parentNode.parentNode.children[2].innerHTML = transcript;//informuje w którym miejscu masz wrzucić to, co się powiedziało 
-                // console.log(mic_icon);
 
                 //i funkcja odpowiedzialna za wrzucanie tego do htmla;
             });
@@ -24,20 +23,20 @@ class speechRecognition {
                 mic_icon.classList.remove('active');
                 // tu jest przypisany wynik czy dobrze czy źle player odpowiedział; ta zmienna jest mi potrzebna do prawidłowego przyznawania/odejmowania punktów
                 //na podstawie tego, kto odpowiadał, jaki jet wynik, przypisać punkty dodatnie lub ujemne
-/*TO ZROBIĆ MAM-WYŚWIETLA CZY DOBRZE CZY ŹLE, ALE NIE DODAJE PUNKTÓW I NIE ODEJMUJE - ZROBIĆ TO DODAWANIE I ODEJMOWANIE PUNKTÓW PRZECIWNIKOM*/  //przydzielenie wyników w zależności
-//od wyniku można to w sumie spiąć z setNewRoundSchema !!!
-let activePlayer = mic_icon.dataset.player === 'enemyPlayer'? game.enemyPlayer : game.mainPlayer;
-console.log(activePlayer)
-if(validationResult){
-    activePlayer == game.mainPlayer ? game.setPoints(game.mainPlayer, game.enemyPlayer, 10, -10) : game.setPoints(game.mainPlayer, game.enemyPlayer, -10, 10);
-}
-else {
-    activePlayer == game.mainPlayer ? game.setPoints(game.mainPlayer, game.enemyPlayer, -10, 10) : game.setPoints(game.mainPlayer, game.enemyPlayer, 10, -10);
-} 
+                /*TO ZROBIĆ MAM-WYŚWIETLA CZY DOBRZE CZY ŹLE, ALE NIE DODAJE PUNKTÓW I NIE ODEJMUJE - ZROBIĆ TO DODAWANIE I ODEJMOWANIE PUNKTÓW PRZECIWNIKOM*/  //przydzielenie wyników w zależności
+                //od wyniku można to w sumie spiąć z setNewRoundSchema !!!
+                let activePlayer = mic_icon.dataset.player === 'enemyPlayer' ? game.enemyPlayer : game.mainPlayer;
+                console.log(activePlayer)
+                if (validationResult) {
+                    activePlayer == game.mainPlayer ? game.setPoints(game.mainPlayer, game.enemyPlayer, 10, -10) : game.setPoints(game.mainPlayer, game.enemyPlayer, -10, 10);
+                }
+                else {
+                    activePlayer == game.mainPlayer ? game.setPoints(game.mainPlayer, game.enemyPlayer, -10, 10) : game.setPoints(game.mainPlayer, game.enemyPlayer, 10, -10);
+                }
 
 
-//console.log(player);
-//console.log(game);
+                //console.log(player);
+                //console.log(game);
                 setNewRoundSchema(true);
             })
             recognition.start();

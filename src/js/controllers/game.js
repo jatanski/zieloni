@@ -7,7 +7,7 @@ import { create } from "domain";
 
 
 class Game {
-    constructor(tabWords,mainPlayer,enemyPlayer) {
+    constructor(tabWords, mainPlayer, enemyPlayer, round) {
         this.timerForClick;
         this.timerForResponse;
         this.tabWords = tabWords;
@@ -30,7 +30,6 @@ class Game {
         enemy_obj.points = enemy.points;
         localStorage.mainPlayer = JSON.stringify(player);//z obiektu robi stringa
         localStorage.enemyPlayer = JSON.stringify(enemy);
-        console.log(player_points, enemy_points)
     }
     fillNames() {
         var player_obj = JSON.parse(localStorage.mainPlayer);
@@ -49,10 +48,10 @@ class Game {
         [...microfons].forEach((mic) => {
             //mic.dataset.player
             //clearInterval
-            function addClass() {mic.classList += ' active';}
-             let action =(e) => {
+            function addClass() { mic.classList += ' active'; }
+            let action = (e) => {
                 let microphone = document.getElementsByClassName('active')
-                if (microphone.length > 0 ){
+                if (microphone.length > 0) {
                     return
                 }
                 else {
@@ -64,7 +63,7 @@ class Game {
     }
     checkAnswere(response, translation_tab, who) {//walidator
         // console.log(response, translation_tab);
-        if(!response[0]){return false}
+        if (!response[0]) { return false }
         if (response[0].toLowerCase() === translation_tab[1].toLowerCase()) {
             console.log('poprawna odpowiedź');
             return true;
@@ -74,7 +73,32 @@ class Game {
         }
 
     }
-    blockMic() { }
+    gameOver(init) {
+        let winner;
+        let mainPlayer = JSON.parse(localStorage.mainPlayer);
+        let enemyPlayer = JSON.parse(localStorage.enemyPlayer);
+
+        if (localStorage.mainPlayer && localStorage.enemyPlayer) {
+            if (mainPlayer.points !== enemyPlayer.points) {
+                winner = mainPlayer.points > enemyPlayer.points ? mainPlayer._name : enemyPlayer._name;
+                alert(`Koniec GRY wygrał ${winner}`);
+            } else {
+                winner = mainPlayer._name + ' i ' + enemyPlayer._name;
+                alert(`Koniec GRY wygrali : ${winner}`);
+            }
+        }
+        if (localStorage.mainPlayer) {
+            localStorage.removeItem('mainPlayer');
+        }
+        if (localStorage.enemyPlayer) {
+            localStorage.removeItem('enemyPlayer');
+        }
+        if (localStorage.round) {
+            localStorage.removeItem('round');
+        }
+        init();
+    }
+    //blockMic() { }
 
 }
 
