@@ -17,6 +17,7 @@ class CreateMainPlayer {
             let avatar = imgs.filter((img) => {
                 return img.dataset && img.dataset.choice === 'true'
             })
+            
 
             if (avatar.length === 1 && name !== 'NAME') {
                 if (!isEnemy) {
@@ -42,6 +43,7 @@ class CreateMainPlayer {
             if (e.tatget !== e.currentTarget) {
                 var clickedIMG = e.target;
                 clickedIMG.dataset.choice = 'true';
+                clickedIMG.parentElement.parentElement.className += " chosen"
                 var imgs = [...clickedIMG.parentElement.children];
                 imgs.forEach((el) => {
                     if (!el.dataset.choice || el.dataset.choice !== 'true') {
