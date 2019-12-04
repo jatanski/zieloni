@@ -38,8 +38,13 @@ class MainCtrl extends CreateMainPlayer {
       let enemy_obj = JSON.parse(localStorage.enemyPlayer);
       mainPlayer ? mainPlayer = mainPlayer : mainPlayer = player_obj;
       enemyPlayer ? enemyPlayer = enemyPlayer : enemyPlayer = enemy_obj;
-      let game = new Game([],mainPlayer,enemyPlayer); // tu wrzucamy coś , jak będziemy coś mówić
-      let setNewRoundSchema = function (firstRound = false) {
+      if (!localStorage.round) { localStorage.round = 0 };
+      let game = new Game([], mainPlayer, enemyPlayer); // tu wrzucamy coś , jak będziemy coś mówić
+      let setNewRoundSchema = (firstRound = false) => {
+
+        //ustalamy po ilu rundach ma nastąpić gameOVER
+        if (parseInt(localStorage.round) > 10) { game.gameOver(this.init.bind(this)); mainPlayer = undefined; enemyPlayer = undefined; return; };
+        localStorage.round++;
         if (!firstRound) { game.setPoints(mainPlayer, enemyPlayer, -10, -10); }//sprawdza czy to jest pierwsza tura
         Words.return_translation('en-pl').then((r) => { view.pushWord(r[0]); game.currentTranslationWords = r });//losowanie słówka
         game.fillNames();
@@ -47,7 +52,6 @@ class MainCtrl extends CreateMainPlayer {
       }
       setNewRoundSchema(true);//wywołanie schematu - 1 runda
       game.addListenersMic(speechRecognition.captureSpeech, game.tabWords,/*słówka, któe losuje nam parę*/ game.checkAnswere, game/*przechowuje słowka, które powiemy w linii 38*/, setNewRoundSchema/*wznowienie nasłuchu do kolejnej gry*/);//nasłuchuje na klikanie, na mikrofon
-
     }
 
   }
